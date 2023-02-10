@@ -9,11 +9,15 @@ h1, h2 {
     text-align: center;
 }
 
+
+label {
+    font-size: 2rem;
+}
+
 body {
     background-color: #262626;
     color: #bbb;
     font-family: 'Roboto Mono', monospace;
-
 }
 
 #contenido {
@@ -48,8 +52,21 @@ input.button {
 
 textarea {
     color: #000000;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .row {
     margin-top: 10rem;
+}
+
+.six.columns.container {
+    border: 1px solid #fff;
+    min-width: 200px;
+    min-height: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #464646;
 }
