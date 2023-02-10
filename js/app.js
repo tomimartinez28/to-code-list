@@ -1,8 +1,8 @@
 // VARIABLES
 
 const formulario = document.querySelector('#formulario');
-const listaTweets = document.querySelector('#lista-tweets');
-let tweets = [];
+const projectsList = document.querySelector('#projects-list');
+let projectos = [];
 
 
 // EVENT LISTENERS
@@ -10,14 +10,14 @@ let tweets = [];
 eventListener()
 
 function eventListener() {
-    // cuando el usuario agrega un nuevo tweet
-    formulario.addEventListener('submit', agregarTweet);
+    // cuando el usuario agrega un nuevo projecto
+    formulario.addEventListener('submit', agregarProjecto);
 
 
     // cuando el el dom esta listo
 
     document.addEventListener('DOMContentLoaded', () => {
-        tweets = JSON.parse(localStorage.getItem('tweets')) || []; // si llega a dar null, devuelve un array vacio
+        projectos = JSON.parse(localStorage.getItem('projectos')) || []; // si llega a dar null, devuelve un array vacio
         crearHTML();
     })
 
@@ -25,29 +25,29 @@ function eventListener() {
 
 // FUNCTIONS
 
-function agregarTweet(e) {
+function agregarProjecto(e) {
     e.preventDefault();
     
     
-    // textarea donde se escribe el tweet
-    const tweet = document.querySelector('#tweet').value;
+    // textarea donde se escribe el projecto nuevo
+    const projecto = document.querySelector('#projecto').value;
     
 
     // validacion
-    if(tweet === '') {
+    if(projecto === '') {
         mostrarError('Mensaje no puede ir vacio')
         return
     }
 
-    const tweetObj = {
+    const projectoObj = {
         id: Date.now(), // le da un ID practicamente unico para que no se repitan
-        tweet, // es lo mismo que decir tweet: tweet
+        projecto, // es lo mismo que decir projecto: projecto
     }
 
 
-    // agrega el tw al array
+    // agrega el projecto al array
 
-    tweets = [...tweets, tweetObj];
+    projectos = [...projectos, projectoObj];
 
     // Crear el html
 
@@ -78,32 +78,32 @@ function mostrarError(error) {
 
 }
 
-// muestra un listado de los tweets
+// muestra un listado de los projectos
 function crearHTML() {
     // limpiar el html previo
     limpiarHTML()
 
-    if(tweets.length > 0) {
-        tweets.forEach( tweet => {
+    if(projectos.length > 0) {
+        projectos.forEach( projecto => {
 
 
             // CREO BOTON DE ELIMINAR
             const eliminarBtn = document.createElement('a');
-            eliminarBtn.classList.add('borrar-tweet');
+            eliminarBtn.classList.add('borrar-projecto');
             eliminarBtn.textContent = 'X';
 
 
             // AÑADIR LA FUNCION DE ELIMINAR
 
             eliminarBtn.onclick = () => {
-                eliminarTweet(tweet.id)
+                eliminarProjecto(projecto.id)
             }
 
 
             // CREO EL HTML DE LAS PUBLICACIONES
             const li = document.createElement('LI');
-            li.textContent = tweet.tweet;
-            listaTweets.appendChild(li);
+            li.textContent = projecto.projecto;
+            projectsList.appendChild(li);
 
             // ASIGNO EL BOTON DE ELIMINAR
             li.append(eliminarBtn);
@@ -115,8 +115,8 @@ function crearHTML() {
 };
 
 // elimina una publicacion
-function eliminarTweet(id) {
-    tweets = tweets.filter( tweet => tweet.id !== id );
+function eliminarProjecto(id) {
+    projectos = projectos.filter( projecto => projecto.id !== id );
     crearHTML() // para que se refresque 
 }
 
@@ -125,10 +125,10 @@ function eliminarTweet(id) {
 
 
 
-// Agrega los tweets actuales al local storage
+// Agrega los projectos actuales al local storage
 
 function sincronizarStorage() {
-    localStorage.setItem('tweets', JSON.stringify(tweets));
+    localStorage.setItem('projectos', JSON.stringify(projectos));
 }
 
 
@@ -137,8 +137,8 @@ function sincronizarStorage() {
 
 // limpia el html
 function limpiarHTML() {
-    while( listaTweets.firstChild ) {
-        listaTweets.removeChild(listaTweets.firstChild);
+    while( projectsList.firstChild ) {
+        projectsList.removeChild(projectsList.firstChild);
     }
 }
 

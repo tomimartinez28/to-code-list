@@ -1,12 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap');
+
+
+h1 {
+    font-size: 9rem;
+    font-weight: bold;
+}
 h1, h2 {
     text-align: center;
 }
 
+body {
+    background-color: #262626;
+    color: #bbb;
+    font-family: 'Roboto Mono', monospace;
+
+}
+
 #contenido {
     margin-top: 40px;
+
 }
-.borrar-tweet,
-.borrar-tweet:hover {
+.borrar-projecto,
+.borrar-projecto:hover {
     float: right;
     cursor: pointer;
     color: red;
@@ -22,4 +37,19 @@ h1, h2 {
     max-width: 400px;
     margin: 0 auto;
     color: white;
+}
+
+input.button {
+    background-color: #bbb;
+    color: #000000;
+    font-weight: bolder;
+}
+
+
+textarea {
+    color: #000000;
+}
+
+.row {
+    margin-top: 10rem;
 }
